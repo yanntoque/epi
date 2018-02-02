@@ -35,15 +35,42 @@ Environnement requis pour faire fonctionner l'application :
 Installation
 --------------
 
-Cloner le projet à la racine de votre serveur (ex: /var/html/www , wamp64 : wamp64/www ).
+Cloner le projet à la racine de votre serveur (ex: /var/html/www , wamp64 : wamp64/www ). 
+
+    * En effectuant la commande : git clone https://github.com/yanntoque/epi.git
+    
+Une fois le clone effectué rendez-vous dans le dossier de l'application à l'aide de la commande : 
+
+    * cd epi 
+    
+Puis effectuer cette commande afin de récupérer les dépendances : 
+
+    * composer install 
+
+
+Il vous sera demandé de renseigner les champs suivants :
+
+    * database_host (localhost) : Appuyez sur Entrée
+    * databse_port (null) : Appuyez sur Entrée
+    * databse_name (epi) :  Appuyez sur Entrée
+    * databse_user (root) : Si root n'est pas votre user renseigner le 
+    * database_ password (root): Si root n'est pas votre password renseigner le 
+    * mailer_transport (smtp) : Appuyez sur Entrée
+    * mailer_host (null) : Appuyez sur Entrée
+    * mailer_user (null) : Appuyez sur Entrée
+    * mailer_password : Appuyez sur Entrée
+    * secret (ThisTokenIsNotSecretChangeIt):Appuyez sur Entrée
+    
 
 Le projet a besoin d'une base données nommée : epi 
 
 Vous pouvez la télécharger depuis le lien suivant :  https://goo.gl/hU33Qa
 
-Il suffira ensuite de l'importer depuis phpmyadmin.
+Il suffira ensuite de créer une base de données avec le nom epi depuis phpmyadmin et importer le fichier téléchargé.
 
-Une fois cela fait le vous pouvez vous rendre à l'adresse : http://localhost/epi/web/login
+Une fois cela fait vous pouvez vous rendre à l'adresse : http://localhost/epi/web/login
+
+La page de connexion doit s'afficher.
 
 Comme vous pouvez le remarquer il faut se connecter. Il y a deux environnemnents disponible pour les utilisateurs selon leur rôle : 
     

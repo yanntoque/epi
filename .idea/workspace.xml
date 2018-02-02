@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1b8101f6-1de0-4d9e-a965-f02b5d1540bb" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change beforePath="$PROJECT_DIR$/app/config/parameters.yml.dist" afterPath="$PROJECT_DIR$/app/config/parameters.yml.dist" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,19 +41,6 @@
                   <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
                   <folding />
                 </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="bootstrap.min.css.map" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/web/css/bootstrap.min.css.map">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="399">
-                  <caret line="0" column="18036" lean-forward="false" selection-start-line="0" selection-start-column="18036" selection-end-line="0" selection-end-column="18036" />
-                  <folding />
-                </state>
-              </provider>
-              <provider editor-type-id="sourcemapFileViewerProvider">
-                <state />
               </provider>
             </entry>
           </file>
@@ -116,12 +104,25 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="parameters.yml.dist" pinned="false" current-in-tab="true">
+          <file leaf-file-name="parameters.yml.dist" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/config/parameters.yml.dist">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="187">
                   <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/README.md">
+              <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+                <state split_layout="SPLIT">
+                  <first_editor relative-caret-position="682">
+                    <caret line="72" column="37" lean-forward="false" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
+                    <folding />
+                  </first_editor>
+                  <second_editor />
                 </state>
               </provider>
             </entry>
@@ -166,7 +167,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>admin_homepage</find>
       <find>abo_admin_homepage</find>
       <find>administrateurs</find>
       <find>administrateur</find>
@@ -196,6 +196,7 @@
       <find>swi</find>
       <find>mailer</find>
       <find>03a98</find>
+      <find>03</find>
     </findStrings>
     <replaceStrings>
       <replace>fake@domain.com</replace>
@@ -221,7 +222,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/src/Abo/AdminBundle/Entity/User.php" />
         <option value="$PROJECT_DIR$/src/Abo/CoreBundle/Resources/views/Product/index.html.twig" />
         <option value="$PROJECT_DIR$/src/Abo/CoreBundle/Resources/views/Product/userHomePage.html.twig" />
@@ -272,6 +272,7 @@
         <option value="$PROJECT_DIR$/app/Resources/TwigBundle/views/Exception/error500.html.twig" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml.dist" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -405,12 +406,12 @@
       <workItem from="1517523834194" duration="11040000" />
       <workItem from="1517558504764" duration="17749000" />
       <workItem from="1517577202419" duration="71000" />
-      <workItem from="1517584982964" duration="4583000" />
+      <workItem from="1517584982964" duration="5780000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56422000" />
+    <option name="totallyTimeSpent" value="57619000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -634,16 +635,6 @@
     <entry file="file://$PROJECT_DIR$/src/Abo/CoreBundle/Resources/config/routing.yml" />
     <entry file="file://$PROJECT_DIR$/src/Abo/CoreBundle/Resources/views/userPages/userHomePage.html.twig" />
     <entry file="file://$PROJECT_DIR$/src/Abo/CoreBundle/Resources/views/userPages/userCalenderPage.html.twig" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/BGKT/CoreBundle/Tests/Controller/DefaultControllerTest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -788,6 +779,17 @@
         <state relative-caret-position="187">
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="682">
+            <caret line="72" column="37" lean-forward="false" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
