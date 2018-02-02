@@ -1,0 +1,53 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/security.html
+security:
+    encoders:
+        BGKT\AdminBundle\Entity\User:
+            algorithm: bcrypt
+            cost: 15
+
+    # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        main:
+            entity:
+                class: BGKT\AdminBundle\Entity\User
+                property: username
+
+
+       # in_memory:
+       #     memory:
+       #         users:
+       #             admin: { password: adminpass, roles: ['ROLE_ADMIN'] }
+       #             superadmin: { password: superadminpass, roles: ['ROLE_SUPERADMIN'] }
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/
+            anonymous: true
+            provider: main
+            form_login:
+                login_path: login
+                check_path: login_check
+                default_target_path: default_security_target
+            logout:
+                path: logout
+                target: /login
+
+
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+
+
+
+
+            # activate different ways to authenticate
+
+            # http_basic: ~
+            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html

@@ -1,0 +1,69 @@
+# route qui gère l'upload en lui même en asynchone
+ajax_snippet_image_send:
+    path: /ajax/snippet/image/send
+    defaults:
+        _controller: BGKTCoreBundle:Epi:ajaxSnippetImageSend
+
+## Routes vers les différentes pages de l'utilisateur
+
+#route vers le calendrier de l'utilisateur
+user_calendarPage:
+    path: /userCalendarPage
+    defaults:
+        _controller: BGKTCoreBundle:Epi:userCalendarShow
+
+#route pour l'upload des cours
+user_uploadpage:
+    path: /userUploadPage
+    defaults:
+        _controller: BGKTCoreBundle:Epi:uploadDocumentView
+
+# Route pour l'upload de TD
+user_uploadpageTD:
+    path: /userUploadPageTD
+    defaults:
+        _controller: BGKTCoreBundle:Epi:uploadDocumentTDView
+
+user_homepage:
+    path: /homepage/
+    defaults : { _controller: BGKTAdminBundle:Auth:indexUser}
+
+#login
+login:
+    path: /login
+    defaults:
+        _controller: BGKTAdminBundle:Auth:login
+
+
+login_check:
+    path: /login_check
+
+logout:
+    path: /logout
+
+forgot_password:
+    path: /forgotpassword
+    defaults:
+        _controller: BGKTAdminBundle:Auth:forgotPassword
+
+
+check_forgot_password:
+    path: /forgotpassword/{email}/{cle}
+    defaults:
+        _controller: BGKTAdminBundle:Auth:checkForgotPassword
+
+default_security_target:
+    path: /login
+
+
+
+#admin - back end => interface d'administration
+abo_admin:
+   resource: "@BGKTAdminBundle/Resources/config/routing.yml"
+   prefix: /admin/users/
+
+
+
+
+
+   

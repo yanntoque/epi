@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Erreur 500 </title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    {% endblock %}
+</head>
+<body>
+<h1>Erreur interne au serveur ou serveur saturé</h1>
+<div>
+    Le serveur a eu un problème et il ne peut renvoyer à l'internaute la page demandée.
+    Vous pouvez aussi vous rendre sur la <a href={{ path('login') }}> page d’accueil</a>.
+    Merci pour votre compréhension.
+</div>
+</body>
+</html>
+

@@ -1,0 +1,20 @@
+admin_homepage:
+    path:  /
+    defaults: { _controller: BGKTAdminBundle:Auth:indexAdmin }
+
+admin_user_delete:
+    path: /delete/{id}
+    defaults: { _controller: BGKTAdminBundle:Auth:delete }
+
+admin_user_create:
+    path: /create
+    defaults: { _controller: BGKTAdminBundle:Auth:create }
+
+admin_user_update:
+    path: /update/{id}
+    defaults: { _controller: BGKTAdminBundle:Auth:update }
+
+
+admin_user_updatePassword:
+    path: /updatePassword/{id}
+    defaults: { _controller: BGKTAdminBundle:Auth:updatePassword }

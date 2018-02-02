@@ -1,0 +1,49 @@
+
+html, body {
+    margin: 10px;
+    color: white !important;
+    background-color: #00326e !important;
+    text-align: center;
+}
+.icon{
+    padding:30px;
+    color: #c89108;
+    font-size:60px;
+}
+.dropzone {
+    min-height: 150px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    background: #00326e !important; ;
+    padding: 20px 20px;
+}
+/* layout.css Style */
+.upload-drop-zone {
+    height: 200px;
+    border-width: 2px;
+    margin-bottom: 20px;
+}
+
+/* skin.css Style*/
+.upload-drop-zone {
+    color: #ccc;
+    border-style: dashed;
+    border-color: #ccc;
+    line-height: 200px;
+    text-align: center
+}
+.upload-drop-zone.drop {
+    color: #222;
+    border-color: #222;
+}
+
+.panel-heading{
+    background-color: #c89108 !important;
+}
+
+.panel-body{
+    background-color: #00326e  !important;
+}
+
+[hidden] {
+    display: none !important;
+}

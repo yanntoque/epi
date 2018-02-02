@@ -1,0 +1,18 @@
+@import url('//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css');
+
+
+html, body {
+    margin: 10px;
+    background-color: #00326e !important;
+}
+
+.container{
+    color: white;
+}
+
+.features-boxed .item .icon{
+    padding:30px;
+    color: #c89108;
+    font-size:60px;
+
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Une erreur est survenue</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="hero-unit center alert alert-warning text-center">
+                    <h1>  Erreur 404 - Page non trouvée </h1>
+                    <br/>
+                    <h3 class="text-center"> La page que vous recherchez n’existe plus. <br/>
+                        Vous pouvez aussi vous rendre sur la <a href="{{ path('login') }}"> page d’accueil </a>.</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>
+
+
+
+
+

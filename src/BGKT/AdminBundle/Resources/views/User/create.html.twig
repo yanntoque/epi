@@ -1,0 +1,10 @@
+{% extends "BGKTAdminBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block body %}
+    <h1>Ajout d'un nouvel utilisateur</h1>
+    <div>
+    {{ include("BGKTAdminBundle:User:form.html.twig") }}
+    </div>
+{% endblock %}

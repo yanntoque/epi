@@ -1,0 +1,13 @@
+{% extends "BGKTAdminBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block body %}
+    <h1>Modification des informations concernant l'utilisateur </h1>
+    <div>
+        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+        {{ form_errors(form) }}
+        {{ form_rest(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

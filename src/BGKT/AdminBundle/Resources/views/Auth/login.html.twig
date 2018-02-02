@@ -1,0 +1,31 @@
+ {% extends "BGKTAdminBundle::layout.html.twig" %}
+
+ {% block title %}{{ parent() }}{% endblock %}
+
+ {% block body %}
+
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error.message }}</div>
+    {% endif %}
+    <div class="col-md-4 col-md-offset-4">
+    <div class="wrapper">
+    <form class="form-signin" action="{{ path('login_check') }}" method="post">
+        <h2 class="form-signin-heading text-center">EPI</h2>
+        </br> <h3 class="text-center ">Connectez-vous </h3>
+        <input class="form-control" placeholder="Identifiant" type="text" id="username" name="_username" value="{{ last_username }}" required />
+
+        <input  class="form-control" placeholder="Mot de passe" type="password" id="password" name="_password" />
+        <br />
+        <input class="btn btn-lg btn-success btn-block" type="submit" value="Connexion" />
+    </form>
+        <br/>
+        <br/>
+        <a href="{{ path('forgot_password') }}"><button class="btn btn-lg btn-link btn-block">Mot de passe oublié</button></a>
+    </div>
+    </div>
+
+
+ {% endblock %}
+
+

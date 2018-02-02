@@ -1,0 +1,14 @@
+{% extends "BGKTAdminBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <p>Etes-vous certain de vouloir supprimer l'utilisateur "{{ user.username }}"</p>
+            <form action="{{ path('admin_user_delete', {'id': user.id}) }}" method="post">
+                <a href="{{ path('admin_homepage') }}" class="btn btn-default">Retour</a>
+                <input class="btn btn-danger" type="submit" value="Supprimer">
+                {{ form_rest(form) }}
+            </form>
+     </div>
+{% endblock %}
