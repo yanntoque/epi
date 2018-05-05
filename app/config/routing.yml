@@ -28,6 +28,13 @@ user_homepage:
     path: /homepage/
     defaults : { _controller: BGKTAdminBundle:Auth:indexUser}
 
+user_ajouter_cours:
+    path: /cours/ajouter
+    defaults : { _controller: BGKTCoreBundle:Cours:new}
+
+core_liste_cours:
+    path: /cours/liste
+    defaults : { _controller: BGKTCoreBundle:Cours:display}
 #login
 login:
     path: /login

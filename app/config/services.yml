@@ -4,6 +4,9 @@ parameters:
 #    parameter_name: value
 
 services:
+    _defaults:
+        autowire: true
+
     app.twig_extension:
         class: BGKT\CoreBundle\Twig\CountryExtension
         tags:
@@ -15,6 +18,12 @@ services:
         tags:
             - { name: twig.extension }
 
+#
+#    BGKT\CoreBundle\Service\FileUploader:
+#        arguments:
+#            $targetDirectory: '%cours_directory%'
 
-
-
+    BGKT\CoreBundle\EventListener\CoursUploadLoadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }

@@ -1,0 +1,10 @@
+<h1>test</h1>
+{% for cours in lstCours %}
+    <p>
+    <div class="col-md-8">
+        Identifiant : {{ cours.id}}</br>
+        Nom : {{ cours.getIntitule }}</br>
+        <a href="{{ asset('uploads/cours/'~cours.getDocument) }}">Aperçu du cours</a>
+    </div></br>
+    </p>
+{% endfor %}

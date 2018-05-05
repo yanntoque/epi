@@ -2,3 +2,14 @@ services:
 #    abo_core.example:
 #        class: BGKT\CoreBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
+    core.file_uploader:
+         class: BGKT\CoreBundle\Service\FileUploader
+         arguments:
+              - '%cours_directory%'
+#              - '%another_directory%'
+#            $targetDirectory: '%cours_directory%'
+
+    BGKT\CoreBundle\EventListener\CoursUploadLoadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
