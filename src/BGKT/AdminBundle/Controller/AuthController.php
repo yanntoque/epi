@@ -23,7 +23,11 @@ class AuthController extends Controller
      */
     public function indexUserAction()
     {
-        return $this->render("BGKTCoreBundle:userPages:userHomePage.html.twig");
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED') && $this->get('security.authorization_checker')->isGranted('ROLE_TEACHER') || $this->get('security.authorization_checker')->isGranted('ROLE_STUDENT')) {
+            return $this->render("BGKTCoreBundle:userPages:userHomePage.html.twig");
+        } else if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED') && $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('admin_homepage');
+        }
     }
 
     /**

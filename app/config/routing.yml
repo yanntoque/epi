@@ -25,7 +25,7 @@ user_uploadpageTD:
         _controller: BGKTCoreBundle:Epi:uploadDocumentTDView
 
 user_homepage:
-    path: /homepage/
+    path: /homepage
     defaults : { _controller: BGKTAdminBundle:Auth:indexUser}
 
 user_ajouter_cours:

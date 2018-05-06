@@ -26,7 +26,7 @@ security:
             security: false
         main_login:
             pattern: ^/login$
-            anonymous: true
+            anonymous: ~
         main:
             pattern: ^/
             anonymous: false
@@ -34,9 +34,9 @@ security:
             form_login:
                 login_path: login
                 check_path: login_check
-                default_target_path: default_security_target
+                default_target_path: /homepage
             logout:
-                path: logout
+                path: /logout
                 target: /login
 
 
