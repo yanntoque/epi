@@ -24,15 +24,18 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
+        main_login:
+            pattern: ^/login$
+            anonymous: true
         main:
             pattern: ^/
-            anonymous: true
+            anonymous: false
             provider: main
             form_login:
                 login_path: login
                 check_path: login_check
                 default_target_path: default_security_target
+                always_use_default_target_path: true
             logout:
                 path: logout
                 target: /login
