@@ -32,6 +32,10 @@ user_ajouter_cours:
     path: /cours/ajouter
     defaults : { _controller: BGKTCoreBundle:Cours:new}
 
+core_supprimer_cours:
+    path: /cours/supprimer/{id}
+    defaults : { _controller: BGKTCoreBundle:Cours:delete}
+
 core_liste_cours:
     path: /cours/liste
     defaults : { _controller: BGKTCoreBundle:Cours:display}

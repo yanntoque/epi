@@ -9,7 +9,3 @@ services:
 #              - '%another_directory%'
 #            $targetDirectory: '%cours_directory%'
 
-    BGKT\CoreBundle\EventListener\CoursUploadLoadListener:
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }

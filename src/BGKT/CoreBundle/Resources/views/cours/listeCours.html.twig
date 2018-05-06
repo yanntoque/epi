@@ -5,6 +5,7 @@
         Identifiant : {{ cours.id}}</br>
         Nom : {{ cours.getIntitule }}</br>
         <a href="{{ asset('uploads/cours/'~cours.getDocument) }}">Aperçu du cours</a>
+        <a href="{{ path('core_supprimer_cours', {'id': cours.id}) }}">Supprimer ce cours</a>
     </div></br>
     </p>
 {% endfor %}

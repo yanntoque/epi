@@ -4,6 +4,7 @@ namespace BGKT\CoreBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\File;
@@ -25,28 +26,36 @@ class CoursController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-//            $file = $cours->getDocument();
-            $cours=$this->get('core.file_uploader')->upload($cours);
+            $cours = $this->get('core.file_uploader')->upload($cours);
             $em = $this->getDoctrine()->getManager();
             $em->persist($cours);
             $em->flush();
-
-
-            //            $file = $cours->getDocument();
-//            $fileName = $this->get('core.file_uploader')->upload($file);
-//            $cours->setDocument($fileName);
-
-            // ... persist the $cours variable or any other work
-//
             return $this->redirect($this->generateUrl('core_liste_cours'));
-
-//            return $this->render('BGKTCoreBundle:cours:listeCours.html.twig', array('lstCours' => $lstCours));
         }
 
         return $this->render('BGKTCoreBundle:cours:ajouterCours.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+
+    /**
+     * @param Cours $cours
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function deleteAction(Cours $cours)
+    {
+        if (!$cours) {
+            throw $this->createNotFoundException('Cours non trouvé.');
+        }
+
+        $filename = $cours->getDocument();
+        $fs = new Filesystem();
+        $fs->remove($this->get('kernel')->getRootDir().'/../web/uploads/cours/'.$filename);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($cours);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('core_liste_cours'));
     }
 
 
