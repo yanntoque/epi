@@ -35,7 +35,6 @@ security:
                 login_path: login
                 check_path: login_check
                 default_target_path: default_security_target
-                always_use_default_target_path: true
             logout:
                 path: logout
                 target: /login
