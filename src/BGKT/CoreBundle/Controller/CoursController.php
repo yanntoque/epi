@@ -12,6 +12,7 @@ use BGKT\CoreBundle\Entity\Cours;
 use BGKT\CoreBundle\Form\CoursType;
 use  BGKT\CoreBundle\Service\FileUploader;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class CoursController extends Controller
 {
@@ -26,7 +27,14 @@ class CoursController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $user = $this->get('security.token_storage')->getToken()->getUser()->getUserName();
+
+            $cours->setNomDepositaire($user);
+            $cours->setDate(new \DateTime());
             $cours = $this->get('core.file_uploader')->upload($cours);
+
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($cours);
             $em->flush();
@@ -50,7 +58,7 @@ class CoursController extends Controller
 
         $filename = $cours->getDocument();
         $fs = new Filesystem();
-        $fs->remove($this->get('kernel')->getRootDir().'/../web/uploads/cours/'.$filename);
+        $fs->remove($this->get('kernel')->getRootDir() . '/../web/uploads/cours/' . $filename);
         $em = $this->getDoctrine()->getManager();
         $em->remove($cours);
         $em->flush();

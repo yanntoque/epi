@@ -2,6 +2,7 @@
 
 namespace BGKT\CoreBundle\Entity;
 
+use BGKT\CoreBundle\Enum\ClasseEnum;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -51,6 +52,35 @@ class Cours
      * @ORM\Column(name="intitule", type="string", length=255, nullable=true)
      */
     private $intitule;
+
+    /**
+     * @var string
+     * @ORM\Column(name="type", type="string", length=255, nullable=false)
+     */
+    private $classe;
+
+    /**
+     * @return string
+     */
+    public function getClasse()
+    {
+        return $this->classe;
+    }
+
+    /**
+     * @param string $classe
+     * @return Cours
+     */
+    public function setClasse($classe)
+    {
+        if (!in_array($classe, ClasseEnum::getAvailableClasses())) {
+            throw new \InvalidArgumentException("Invalid type");
+        }
+
+        $this->classe = $classe;
+
+        return $this;
+    }
 
 
     /**

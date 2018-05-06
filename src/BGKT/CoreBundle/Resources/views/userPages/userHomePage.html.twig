@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="{{ asset("css/userPagesStyles/userHomePage.css") }}" />
         {{ parent() }}
 {% endblock %}
-{# block user affiche l'acceuil pour les utilisateurs  #}
+{# block user affiche l'accueil pour les utilisateurs  #}
 {% block user %}
     {% if is_granted('ROLE_TEACHER') %}
     <div class="container">
@@ -28,7 +28,7 @@
                 <div class="col-md-4 col-sm-6 item">
                     <div class="box"><i class="glyphicon glyphicon-education icon"></i>
                         <h3 class="name">Dépot des cours</h3>
-                        <p class="description">Cette fonctionnalité vous permet de déposer vos cours. Ils seront à la disposition des élèves.</p><a href="{{ path('user_uploadpage') }}" class="learn-more">En savoir plus >></a></div>
+                        <p class="description">Cette fonctionnalité vous permet de déposer vos cours. Ils seront à la disposition des élèves.</p><a href="{{ path('user_ajouter_cours') }}" class="learn-more">En savoir plus >></a></div>
                 </div>
             </div>
         </div>
