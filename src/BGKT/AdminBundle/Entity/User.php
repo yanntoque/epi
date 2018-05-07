@@ -3,6 +3,7 @@
 namespace BGKT\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use BGKT\CoreBundle\Enum\ClasseEnum;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -96,6 +97,35 @@ class User implements UserInterface
      * @ORM\Column(name="roles", type="array")
      */
     private $roles = array();
+
+    /**
+     * @var string
+     * @ORM\Column(name="classe", type="string", length=255, nullable=true)
+     */
+    private $classe;
+
+    /**
+     * @return string
+     */
+    public function getClasse()
+    {
+        return $this->classe;
+    }
+
+    /**
+     * @param string $classe
+     * @return User
+     */
+    public function setClasse($classe)
+    {
+        if (!in_array($classe, ClasseEnum::getAvailableClasses())) {
+            throw new \InvalidArgumentException("Invalid type");
+        }
+
+        $this->classe = $classe;
+
+        return $this;
+    }
 
     // méthodes obligatoires pour implétmenter UserInterface
     public function eraseCredentials()

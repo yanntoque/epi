@@ -2,6 +2,7 @@
 
 namespace BGKT\AdminBundle\Form\Type;
 
+use BGKT\CoreBundle\Enum\ClasseEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -19,25 +20,32 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('username', TextType::class,
-                  array('label' => 'Pseudonyme de l\'utilisateur : '))
-                ->add('nom', TextType::class,
-                  array('label' => 'Nom : '))
-                ->add('prenom', TextType::class,
-                    array('label' => 'Prénom : '))
-                ->add('password', PasswordType::class,
-                  array('label' => 'Mot de passe : '))
-                ->add('email', EmailType::class,
-                  array('label' => 'Email :'))
-                ->add('roles', ChoiceType::class,
-                  array('multiple' => true,
-                        'expanded' => true,
-                        'choices'  => array('utilisateur' => 'ROLE_ADMIN',
-                                            'Professeur' => 'ROLE_TEACHER',
-                                            'Étudiant ou Apprenti' => 'ROLE_STUDENT'
-                                             ),))
-                ->add('save', SubmitType::class);
+            array('label' => 'Pseudonyme de l\'utilisateur : '))
+            ->add('nom', TextType::class,
+                array('label' => 'Nom : '))
+            ->add('prenom', TextType::class,
+                array('label' => 'Prénom : '))
+            ->add('password', PasswordType::class,
+                array('label' => 'Mot de passe : '))
+            ->add('email', EmailType::class,
+                array('label' => 'Email :'))
+            ->add('roles', ChoiceType::class,
+                array('multiple' => true,
+                    'expanded' => true,
+                    'choices' => array('utilisateur' => 'ROLE_ADMIN',
+                        'Professeur' => 'ROLE_TEACHER',
+                        'Étudiant ou Apprenti' => 'ROLE_STUDENT'
+                    ),))
+            ->add('classe', ChoiceType::class, array(
+                'required' => false,
+                'choices' => ClasseEnum::getAvailableClasses(),
+                'choice_label' => function ($choice) {
+                    return ClasseEnum::getClasseName($choice);
+                }
+            ))
+            ->add('save', SubmitType::class);
     }
-    
+
     /**
      * {@inheritdoc}
      */
