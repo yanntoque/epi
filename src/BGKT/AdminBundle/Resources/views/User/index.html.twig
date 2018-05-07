@@ -12,30 +12,39 @@
 
         {% for user in users %}
             <p>
-                <div class="col-md-8">
+            <div class="col-md-8">
 
 
-                    Pseudonyme : {{ user.username }}</br>
-                    Nom : {{ user.nom }}</br>
-                    Prénom : {{ user.prenom }}</br>
-                    Email : {{ user.email }}</br>
-                   {% for role in user.roles %}
-                   Statut :   {{ role }}
-                   {% endfor %}
-                </div>
-                <div class="col-md-4" >
+                Pseudonyme : {{ user.username }}</br>
+                Nom : {{ user.nom }}</br>
+                Prénom : {{ user.prenom }}</br>
+                Email : {{ user.email }}</br>
+                {% for role in user.roles %}
+                    Statut :   {{ role }} <br/>
+                    {% if role == "ROLE_STUDENT" %}
+                        Classe : {{ user.classe }}
+                    {% endif %}
+                {% endfor %}
+
+
+            </div>
+            <div class="col-md-4">
                 <ul class="list-unstyled">
-                    <li> <a href="{{ path('admin_user_update', {'id': user.id}) }}" class="btn btn-info btn-md" >Modifier l'utilisateur</a> </li> </br>
+                    <li><a href="{{ path('admin_user_update', {'id': user.id}) }}" class="btn btn-info btn-md">Modifier
+                            l'utilisateur</a></li>
+                    </br>
 
-                    <li> <a href="{{ path('admin_user_delete', {'id': user.id}) }}" class="btn btn-danger btn-md">Supprimer l'utilisateur</a>  </li></br>
+                    <li><a href="{{ path('admin_user_delete', {'id': user.id}) }}" class="btn btn-danger btn-md">Supprimer
+                            l'utilisateur</a></li>
+                    </br>
 
-                    <li> <a href="{{ path('admin_user_updatePassword', {'id': user.id}) }}" class="btn btn-info btn-md">Modifier le mot de passe</a>  </li></br>
+                    <li><a href="{{ path('admin_user_updatePassword', {'id': user.id}) }}" class="btn btn-info btn-md">Modifier
+                            le mot de passe</a></li>
+                    </br>
                 </ul>
 
 
-
-
-                </div></br>
+            </div></br>
             </p>
         {% endfor %}
 
