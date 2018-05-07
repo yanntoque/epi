@@ -24,21 +24,36 @@ user_uploadpageTD:
     defaults:
         _controller: BGKTCoreBundle:Epi:uploadDocumentTDView
 
+# Route des fonctionnalités pour les utilisateurs (Professeurs ou étudiants)
+
+# accueil
 user_homepage:
     path: /homepage
     defaults : { _controller: BGKTAdminBundle:Auth:indexUser}
 
+# Cours CRUD :
+
+#Create
 user_ajouter_cours:
     path: /cours/ajouter
     defaults : { _controller: BGKTCoreBundle:Cours:new}
 
-core_supprimer_cours:
+#Read
+user_liste_cours:
+    path: /cours/liste
+    defaults : { _controller: BGKTCoreBundle:Cours:display}
+
+#Update
+user_modifier_cours:
+    path: /cours/modifier/{id}
+    defaults : { _controller: BGKTCoreBundle:Cours:edit}
+
+#Delete
+user_supprimer_cours:
     path: /cours/supprimer/{id}
     defaults : { _controller: BGKTCoreBundle:Cours:delete}
 
-core_liste_cours:
-    path: /cours/liste
-    defaults : { _controller: BGKTCoreBundle:Cours:display}
+
 #login
 login:
     path: /login
