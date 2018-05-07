@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="{{ asset("css/userPagesStyles/userHomePage.css") }}"/>
     {{ parent() }}
 {% endblock %}
+{% set coursDepose = 0 %}
 {% block user %}
     {% if is_granted('ROLE_TEACHER') %}
         <h1>Liste des cours déposés</h1>
@@ -16,10 +17,32 @@
                 Date : {{ cours.getDate|date('d/m/Y h:m:s') }}</br>
                 Classe : {{ cours.getClasse }}</br>
                 <a href="{{ asset('uploads/cours/'~cours.getDocument) }}">Aperçu du cours</a>
-                <a href="{{ path('core_supprimer_cours', {'id': cours.id}) }}">Supprimer ce cours</a>
+                <a href="{{ path('user_supprimer_cours', {'id': cours.id}) }}">Supprimer ce cours</a>
                 <a href="{{ path('user_modifier_cours', {'id': cours.id}) }}">Modifier le cours (PDF)</a>
             </div></br>
             </p>
         {% endfor %}
+    {% endif %}
+    {% if is_granted('ROLE_STUDENT') %}
+        <h1>Liste des cours déposés par vos professeurs</h1>
+
+        {% for cours in lstCours %}
+            {% if cours.classe == app.user.classe %}
+                {% set coursDepose = 1 %}
+                <p>
+                <div class="col-md-8">
+                    Identifiant : {{ cours.id }}</br>
+                    Nom : {{ cours.getIntitule }}</br>
+                    Dépositaire : {{ cours.getNomDepositaire }}</br>
+                    Date : {{ cours.getDate|date('d/m/Y h:m:s') }}</br>
+                    Classe : {{ cours.getClasse }}</br>
+                    <a href="{{ asset('uploads/cours/'~cours.getDocument) }}">Aperçu du cours</a>
+                </div></br>
+                </p>
+            {% endif %}
+        {% endfor %}
+        {% if coursDepose == 0 %}
+            <div class="alert-warning">Auncun cours n'a été déposé pour votre promotion</div>
+        {% endif %}
     {% endif %}
 {% endblock %}
