@@ -3,6 +3,7 @@
 namespace BGKT\CoreBundle\Controller;
 
 
+use BGKT\CoreBundle\Form\CoursEditType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,7 +39,7 @@ class CoursController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($cours);
             $em->flush();
-            return $this->redirect($this->generateUrl('core_liste_cours'));
+            return $this->redirect($this->generateUrl('user_liste_cours'));
         }
 
         return $this->render('BGKTCoreBundle:cours:ajouterCours.html.twig', array(
@@ -63,16 +64,47 @@ class CoursController extends Controller
         $em->remove($cours);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('core_liste_cours'));
+        return $this->redirect($this->generateUrl('user_liste_cours'));
     }
 
+    /**
+     * @param Request $request
+     * @param Cours $cours
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function editAction(Request $request, Cours $cours)
+    {
 
-//    public function editAction(Request $request, ProfileModel $profileModel)
-//    {
-//        $cours->setDocument(
-//            new File($this->getParameter('cours_directory') . '/' . $cours->getDocument())
-//        );
-//    }
+        $old = $cours->getDocument();
+        $cours->setDocument(
+            new File($this->getParameter('cours_directory') . '/' . $cours->getDocument())
+        );
+        $new = $cours->getDocument();
+
+
+        $form = $this->createForm(CoursEditType::class, $cours);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($old != $new) {
+                unlink($new);
+            }
+            $cours = $this->get('core.file_uploader')->upload($cours);
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($cours);
+            $em->flush();
+
+
+            return $this->redirect($this->generateUrl('user_liste_cours'));
+        }
+
+        return $this->render('BGKTCoreBundle:cours:modifierCours.html.twig', array(
+            'cours' => $cours,
+            'form' => $form->createView()
+        ));
+    }
 
 
     public function displayAction()

@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use BGKT\CoreBundle\Entity\Cours;
 
 
-
 class FileUploader
 {
     private $coursDir;
@@ -24,11 +23,11 @@ class FileUploader
 
     public function upload($class)
     {
-        if($class instanceof Cours){
-        $file = $class->getDocument();
-        $fileName = md5(uniqid()).'.'.$file->guessExtension();
-        $file->move($this->coursDir, $fileName);
-        $class->setDocument($fileName);
+        if ($class instanceof Cours) {
+            $file = $class->getDocument();
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+            $file->move($this->coursDir, $fileName);
+            $class->setDocument($fileName);
         }
 
         return $class;

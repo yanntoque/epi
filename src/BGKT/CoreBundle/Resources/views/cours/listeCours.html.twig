@@ -17,6 +17,7 @@
                 Classe : {{ cours.getClasse }}</br>
                 <a href="{{ asset('uploads/cours/'~cours.getDocument) }}">Aperçu du cours</a>
                 <a href="{{ path('core_supprimer_cours', {'id': cours.id}) }}">Supprimer ce cours</a>
+                <a href="{{ path('user_modifier_cours', {'id': cours.id}) }}">Modifier le cours (PDF)</a>
             </div></br>
             </p>
         {% endfor %}
