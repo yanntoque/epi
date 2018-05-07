@@ -41,7 +41,7 @@
             <div class="features-boxed">
                 <div class="container">
                     <div class="intro">
-                        <h2 class="text-center">Bienvenue sur l'EPI - {{ app.user.username }}</h2>
+                        <h2 class="text-center">Bienvenue sur l'EPI - {{ app.user.username }} - Promo : {{ app.user.classe }}</h2>
                         <p class="text-center">Vous retrouverez ci-dessous les fonctionnalités de l&#39;EPI</p>
                     </div>
                     <div class="row features">
@@ -58,7 +58,7 @@
                         <div class="col-md-4 col-sm-6 item">
                             <div class="box"><i class="glyphicon glyphicon-education icon"></i>
                                 <h3 class="name">Consulter les cours</h3>
-                                <p class="description">Tous les cours déposés par vos professeurs sont disponibles ici.</p><a href="{{ path('user_ajouter_cours') }}" class="learn-more">En savoir plus >></a></div>
+                                <p class="description">Tous les cours déposés par vos professeurs sont disponibles ici.</p><a href="{{ path('user_liste_cours') }}" class="learn-more">En savoir plus >></a></div>
                         </div>
                     </div>
                 </div>
