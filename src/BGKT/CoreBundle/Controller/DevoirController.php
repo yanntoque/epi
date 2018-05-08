@@ -25,7 +25,7 @@ class DevoirController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $user = $this->get('security.token_storage')->getToken()->getUser()->getUserName();
+            $user = $this->get('security.token_storage')->getToken()->getUser()->getPrenom() ." ".$this->get('security.token_storage')->getToken()->getUser()->getNom();
             $userClasse = $this->get('security.token_storage')->getToken()->getUser()->getClasse();
 
             $devoir->setNomDepositaire($user);
@@ -101,8 +101,11 @@ class DevoirController extends Controller
 
     public function displayAction()
     {
-        $lstDevoir = $this->getDoctrine()->getManager()->getRepository('BGKTCoreBundle:Devoir')->findAll();
-        return $this->render('BGKTCoreBundle:Devoir:listeDevoir.html.twig', array('lstdevoir' => $lstDevoir));
+        $nomDepositaire = $this->get('security.token_storage')->getToken()->getUser()->getPrenom() ." ".$this->get('security.token_storage')->getToken()->getUser()->getNom();
+        $lstDevoirEleve = $this->getDoctrine()->getManager()->getRepository('BGKTCoreBundle:Devoir')->findAllByDepositaire($nomDepositaire);
+        $lstDevoirProf = $this->getDoctrine()->getManager()->getRepository('BGKTCoreBundle:Devoir')->findAll();
+
+        return $this->render('BGKTCoreBundle:Devoir:listeDevoir.html.twig', array('lstdevoirEleve' => $lstDevoirEleve,'lstdevoirprof' => $lstDevoirProf));
     }
 
 }

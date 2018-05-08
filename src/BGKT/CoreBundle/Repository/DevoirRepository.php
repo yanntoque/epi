@@ -14,4 +14,14 @@ class DevoirRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->findBy(array(), array('id' => 'DESC'));
     }
+
+    public function findAllByDepositaire($nomDepositaire){
+        return $this->getEntityManager()
+            ->createQuery('
+            SELECT d
+            FROM BGKTCoreBundle:Devoir d
+            WHERE d.nomDepositaire = :nomDepositaire')
+            ->setParameter('nomDepositaire', $nomDepositaire)
+            ->getResult();
+    }
 }
