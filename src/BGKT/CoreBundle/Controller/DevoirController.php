@@ -45,6 +45,25 @@ class DevoirController extends Controller
         ));
     }
 
+    /**
+     * @param Devoir $devoir
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function deleteAction(Devoir $devoir){
+        if (!$devoir) {
+            throw $this->createNotFoundException('Devoir non trouvé.');
+        }
+
+        $filename = $devoir->getDocument();
+        $fs = new Filesystem();
+        $fs->remove($this->get('kernel')->getRootDir() . '/../web/uploads/devoir/' . $filename);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($devoir);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('user_liste_devoir'));
+    }
+
     public function displayAction(){
         $lstDevoir = $this->getDoctrine()->getManager()->getRepository('BGKTCoreBundle:Devoir')->findAll();
         return $this->render('BGKTCoreBundle:Devoir:listeDevoir.html.twig', array('lstdevoir' => $lstDevoir));
