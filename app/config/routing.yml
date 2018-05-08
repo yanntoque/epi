@@ -66,6 +66,11 @@ user_liste_devoir:
     path: /devoir/liste
     defaults: { _controller: BGKTCoreBundle:Devoir:display}
 
+#Update
+user_modifier_devoir:
+    path: /devoir/modifier/{id}
+    defaults: { _controller: BGKTCoreBundle:Devoir:edit}
+
 #Delete
 user_supprimer_devoir:
     path: /devoir/supprimer/{id}

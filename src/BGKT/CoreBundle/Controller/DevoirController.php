@@ -4,6 +4,7 @@ namespace BGKT\CoreBundle\Controller;
 
 use BGKT\CoreBundle\Entity\Devoir;
 use BGKT\CoreBundle\Form\DevoirType;
+use BGKT\CoreBundle\Form\DevoirEditType;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\File;
@@ -45,11 +46,45 @@ class DevoirController extends Controller
         ));
     }
 
+    public function editAction(Request $request, Devoir $devoir)
+    {
+        $old = $devoir->getDocument();
+        $devoir->setDocument(
+            new File($this->getParameter('devoir_directory') . '/' . $devoir->getDocument())
+        );
+        $new = $devoir->getDocument();
+
+
+        $form = $this->createForm(DevoirEditType::class, $devoir);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($old != $new) {
+                unlink($new);
+            }
+            $devoir = $this->get('core.file_uploader')->upload($devoir);
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($devoir);
+            $em->flush();
+
+
+            return $this->redirect($this->generateUrl('user_liste_devoir'));
+        }
+
+        return $this->render('BGKTCoreBundle:Devoir:modifierDevoir.html.twig', array(
+            'devoir' => $devoir,
+            'form' => $form->createView()
+        ));
+    }
+
     /**
      * @param Devoir $devoir
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function deleteAction(Devoir $devoir){
+    public function deleteAction(Devoir $devoir)
+    {
         if (!$devoir) {
             throw $this->createNotFoundException('Devoir non trouvé.');
         }
@@ -64,7 +99,8 @@ class DevoirController extends Controller
         return $this->redirect($this->generateUrl('user_liste_devoir'));
     }
 
-    public function displayAction(){
+    public function displayAction()
+    {
         $lstDevoir = $this->getDoctrine()->getManager()->getRepository('BGKTCoreBundle:Devoir')->findAll();
         return $this->render('BGKTCoreBundle:Devoir:listeDevoir.html.twig', array('lstdevoir' => $lstDevoir));
     }

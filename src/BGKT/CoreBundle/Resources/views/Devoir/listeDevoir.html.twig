@@ -18,7 +18,7 @@
                 <a href="{{ asset('uploads/devoir/'~devoir.getDocument) }}">Aperçu du devoir</a>
                 <a href="{{ path('user_supprimer_devoir', {'id': devoir.id}) }}">Supprimer ce devoir</a>
                 {#<a href="{{ path('user_supprimer_devoir', {'id': devoir.id}) }}">Supprimer ce devoir</a>#}
-                {#<a href="{{ path('user_modifier_devoir', {'id': devoir.id}) }}">Modifier le devoir (PDF)</a>#}
+                <a href="{{ path('user_modifier_devoir', {'id': devoir.id}) }}">Modifier le devoir (PDF)</a>
             </div></br>
             </p>
         {% endfor %}
