@@ -14,4 +14,14 @@ class CoursRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->findBy(array(), array('id' => 'DESC'));
     }
+
+    public function findAllByDepositaire($nomDepositaire){
+        return $this->getEntityManager()
+            ->createQuery('
+            SELECT c
+            FROM BGKTCoreBundle:Cours c
+            WHERE c.nomDepositaire = :nomDepositaire')
+            ->setParameter('nomDepositaire', $nomDepositaire)
+            ->getResult();
+    }
 }

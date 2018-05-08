@@ -7,42 +7,74 @@
 {% set coursDepose = 0 %}
 {% block user %}
     {% if is_granted('ROLE_TEACHER') %}
-        <h1>Liste des cours déposés</h1>
-        {% for cours in lstCours %}
-            <p>
-            <div class="col-md-8">
-                Identifiant : {{ cours.id }}</br>
-                Nom : {{ cours.getIntitule }}</br>
-                Dépositaire : {{ cours.getNomDepositaire }}</br>
-                Date : {{ cours.getDate|date('d/m/Y h:m:s') }}</br>
-                Classe : {{ cours.getClasse }}</br>
-                <a href="{{ asset('uploads/cours/'~cours.getDocument) }}">Aperçu du cours</a>
-                <a href="{{ path('user_supprimer_cours', {'id': cours.id}) }}">Supprimer ce cours</a>
-                <a href="{{ path('user_modifier_cours', {'id': cours.id}) }}">Modifier le cours (PDF)</a>
-            </div></br>
-            </p>
-        {% endfor %}
+        <div class="container">
+            <h1>Liste des cours que vous avez déposés</h1>
+            <table class="table table-stripped">
+                <thead>
+                <tr>
+                    <th>Identifiant</th>
+                    <th>Intitulé</th>
+                    <th>Déposé le</th>
+                    <th>Déposé par</th>
+                    <th>Promotion</th>
+                    <th>Apercu / Modifier / Supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for cours in lstCoursProf %}
+                    <tr>
+                        <td>{{ cours.id }}</td>
+                        <td>{{ cours.getIntitule }}</td>
+                        <td>{{ cours.getDate|date('d/m/Y') }}</td>
+                        <td>{{ cours.getNomDepositaire }}</td>
+                        <td>{{ cours.getClasse }}</td>
+                        <td><a class="btn btn-success" href="{{ asset('uploads/cours/'~cours.getDocument) }}">Aperçu du
+                                cours</a>
+                            <a class="btn btn-info" href="{{ path('user_modifier_cours', {'id': cours.id}) }}">Modifier
+                                le cours </a>
+                            <a class="btn btn-danger" href="{{ path('user_supprimer_cours', {'id': cours.id}) }}">Supprimer
+                                ce cours</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% endif %}
-    {% if is_granted('ROLE_STUDENT') %}
-        <h1>Liste des cours déposés par vos professeurs</h1>
-
+{% if is_granted('ROLE_STUDENT') %}
+<div class="container">
+    <h1>Liste des cours déposés par vos professeurs</h1>
+    <table class="table table-stripped">
+        <thead>
+        <tr>
+            <th>Identifiant</th>
+            <th>Intitulé</th>
+            <th>Déposé le</th>
+            <th>Déposé par</th>
+            <th>Promotion</th>
+            <th>Apercu / Modifier / Supprimer</th>
+        </tr>
+        </thead>
+        <tbody>
         {% for cours in lstCours %}
             {% if cours.classe == app.user.classe %}
                 {% set coursDepose = 1 %}
-                <p>
-                <div class="col-md-8">
-                    Identifiant : {{ cours.id }}</br>
-                    Nom : {{ cours.getIntitule }}</br>
-                    Dépositaire : {{ cours.getNomDepositaire }}</br>
-                    Date : {{ cours.getDate|date('d/m/Y h:m:s') }}</br>
-                    Classe : {{ cours.getClasse }}</br>
-                    <a href="{{ asset('uploads/cours/'~cours.getDocument) }}">Aperçu du cours</a>
-                </div></br>
-                </p>
+                <tr>
+                    <td>{{ cours.id }}</td>
+                    <td>{{ cours.getIntitule }}</td>
+                    <td>{{ cours.getDate|date('d/m/Y') }}</td>
+                    <td>{{ cours.getNomDepositaire }}</td>
+                    <td>{{ cours.getClasse }}</td>
+                    <td><a class="btn btn-success" href="{{ asset('uploads/cours/'~cours.getDocument) }}">Aperçu du
+                            cours</a>
+                    </td>
+                </tr>
             {% endif %}
         {% endfor %}
         {% if coursDepose == 0 %}
-            <div class="alert-warning">Auncun cours n'a été déposé pour votre promotion</div>
+            <div class="alert alert-warning">Auncun cours n'a été déposé pour votre promotion</div>
         {% endif %}
     {% endif %}
-{% endblock %}
+    </tbody>
+    </table>
+    {% endblock %}

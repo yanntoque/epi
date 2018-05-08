@@ -29,7 +29,7 @@ class CoursController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $user = $this->get('security.token_storage')->getToken()->getUser()->getUserName();
+            $user = $this->get('security.token_storage')->getToken()->getUser()->getPrenom() ." ".$this->get('security.token_storage')->getToken()->getUser()->getNom();
 
             $cours->setNomDepositaire($user);
             $cours->setDate(new \DateTime());
@@ -109,8 +109,10 @@ class CoursController extends Controller
 
     public function displayAction()
     {
+        $nomDepositaire = $this->get('security.token_storage')->getToken()->getUser()->getPrenom() ." ".$this->get('security.token_storage')->getToken()->getUser()->getNom();
+        $lstCoursProf = $this->getDoctrine()->getManager()->getRepository('BGKTCoreBundle:Cours')->findAllByDepositaire($nomDepositaire);
         $lstCours = $this->getDoctrine()->getManager()->getRepository('BGKTCoreBundle:Cours')->findAll();
-        return $this->render('BGKTCoreBundle:cours:listeCours.html.twig', array('lstCours' => $lstCours));
+        return $this->render('BGKTCoreBundle:cours:listeCours.html.twig', array('lstCours' => $lstCours, 'lstCoursProf' => $lstCoursProf));
     }
 
     /**
