@@ -3,6 +3,7 @@
 namespace BGKT\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Devoir
@@ -41,6 +42,47 @@ class Devoir
      * @ORM\Column(name="commentaire", type="string", length=255)
      */
     private $commentaire;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nomDepositaire", type="string", length=255, nullable=true)
+     */
+    private $nomDepositaire;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="document", type="string", length=255)
+     * @Assert\NotBlank(message="S'il vous plaît, téléchargez le fichier sous format PDF")
+     * @Assert\File(mimeTypes={ "application/pdf" })
+     */
+    private $document;
+
+
+    /**
+     * @var string
+     * @ORM\Column(name="type", type="string", length=255, nullable=false)
+     */
+    private $classe;
+
+    /**
+     * @param string $classe
+     */
+    public function setClasse($classe)
+    {
+        $this->classe = $classe;
+    }
+
+    /**
+     * @return string
+     */
+    public function getClasse()
+    {
+        return $this->classe;
+    }
 
 
     /**
@@ -99,6 +141,38 @@ class Devoir
     public function getDateRendu()
     {
         return $this->dateRendu;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNomDepositaire()
+    {
+        return $this->nomDepositaire;
+    }
+
+    /**
+     * @param string $nomDepositaire
+     */
+    public function setNomDepositaire($nomDepositaire)
+    {
+        $this->nomDepositaire = $nomDepositaire;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDocument()
+    {
+        return $this->document;
+    }
+
+    /**
+     * @param string $document
+     */
+    public function setDocument($document)
+    {
+        $this->document = $document;
     }
 
     /**

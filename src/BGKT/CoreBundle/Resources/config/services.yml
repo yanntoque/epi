@@ -6,6 +6,6 @@ services:
          class: BGKT\CoreBundle\Service\FileUploader
          arguments:
               - '%cours_directory%'
-#              - '%another_directory%'
+              - '%devoir_directory%'
 #            $targetDirectory: '%cours_directory%'
 

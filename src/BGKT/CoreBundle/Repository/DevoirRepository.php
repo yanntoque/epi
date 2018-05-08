@@ -10,4 +10,8 @@ namespace BGKT\CoreBundle\Repository;
  */
 class DevoirRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAll()
+    {
+        return $this->findBy(array(), array('id' => 'DESC'));
+    }
 }

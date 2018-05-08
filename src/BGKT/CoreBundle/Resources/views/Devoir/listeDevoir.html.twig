@@ -1,0 +1,46 @@
+{% extends "BGKTCoreBundle::userLayout.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset("css/userPagesStyles/userHomePage.css") }}"/>
+    {{ parent() }}
+{% endblock %}
+{#{% set devoirDepose = 0 %}#}
+{% block user %}
+    {% if is_granted('ROLE_STUDENT') %}
+        <h1>Devoirs déposés</h1>
+        {% for devoir in lstdevoir %}
+            <p>
+            <div class="col-md-8">
+                Identifiant : {{ devoir.id }}</br>
+                Dépositaire : {{ devoir.getNomDepositaire }}</br>
+                Devoir rendu le : {{ devoir.getDateRendu|date('d/m/Y') }}</br>
+                Commentaire : {{ devoir.getCommentaire }} <br/>
+                <a href="{{ asset('uploads/devoir/'~devoir.getDocument) }}">Aperçu du devoir</a>
+                {#<a href="{{ path('user_supprimer_devoir', {'id': devoir.id}) }}">Supprimer ce devoir</a>#}
+                {#<a href="{{ path('user_modifier_devoir', {'id': devoir.id}) }}">Modifier le devoir (PDF)</a>#}
+            </div></br>
+            </p>
+        {% endfor %}
+    {% endif %}
+    {#{% if is_granted('ROLE_TEACHER') %}#}
+        {#<h1>Liste des devoir déposés par les étudiants</h1>#}
+
+        {#{% for devoir in lstdevoir %}#}
+            {#{% if devoir.classe == app.user.classe %}#}
+                {#{% set devoirDepose = 1 %}#}
+                {#<p>#}
+                {#<div class="col-md-8">#}
+                    {#Identifiant : {{ devoir.id }}</br>#}
+                    {#Nom : {{ devoir.getTitre }}</br>#}
+                    {#Dépositaire : {{ devoir.getNomDepositaire }}</br>#}
+                    {#Date : {{ devoir.getDateRendu|date('d/m/Y h:m:s') }}</br>#}
+                    {#<a href="{{ asset('uploads/devoir/'~devoir.getDocument) }}">Aperçu du devoir</a>#}
+                {#</div></br>#}
+                {#</p>#}
+            {#{% endif %}#}
+        {#{% endfor %}#}
+        {#{% if devoirDepose == 0 %}#}
+            {#<div class="alert-warning">Auncun devoir n'a été déposé pour votre promotion</div>#}
+        {#{% endif %}#}
+    {#{% endif %}#}
+{% endblock %}

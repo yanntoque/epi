@@ -54,6 +54,18 @@ user_supprimer_cours:
     defaults : { _controller: BGKTCoreBundle:Cours:delete}
 
 
+# Devoir CRUD
+
+#Create
+user_ajouter_devoir:
+    path: /devoir/ajouter
+    defaults: { _controller: BGKTCoreBundle:Devoir:new}
+
+#Read
+user_liste_devoir:
+    path: /devoir/liste
+    defaults: { _controller: BGKTCoreBundle:Devoir:display}
+
 #login
 login:
     path: /login

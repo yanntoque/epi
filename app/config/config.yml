@@ -8,6 +8,7 @@ imports:
 parameters:
     locale: fr
     cours_directory: '%kernel.root_dir%/../web/uploads/cours'
+    devoir_directory: '%kernel.root_dir%/../web/uploads/devoir'
 
 framework:
     #esi:             ~
@@ -44,6 +45,7 @@ twig:
         - 'bootstrap_3_layout.html.twig'
     globals:
         cours_directory: 'uploads/cours/'
+        devoir_directory: 'uploads/devoir/'
 
 # Doctrine Configuration
 doctrine:
