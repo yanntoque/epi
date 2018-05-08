@@ -1,39 +1,49 @@
 {% extends "BGKTCoreBundle::userLayout.html.twig" %}
 
 {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset("css/userPagesStyles/userHomePage.css") }}" />
-        {{ parent() }}
+    <link rel="stylesheet" href="{{ asset("css/userPagesStyles/userHomePage.css") }}"/>
+    {{ parent() }}
 {% endblock %}
 {# block user affiche l'accueil pour les utilisateurs  #}
 {% block user %}
     {% if is_granted('ROLE_TEACHER') %}
-    <div class="container">
-    <div class="features-boxed">
         <div class="container">
-            <div class="intro">
-                <h2 class="text-center">Bienvenue sur l'EPI - {{ app.user.username }}</h2>
-                <p class="text-center">Vous retrouverez ci-dessous les fonctionnalités de l&#39;EPI</p>
-            </div>
-            <div class="row features">
-                <div class="col-md-4 col-sm-6 item">
-                    <div class="box"><i class="glyphicon glyphicon-time icon"></i>
-                        <h3 class="name">Votre temps est précieux</h3>
-                        <p class="description">Gagnez du temps en utilisant ce calendier. Il vous permettra d'optimiser votre emploi du temps.</p><a href="{{ path('user_calendarPage') }}" class="learn-more">En savoir plus >></a></div>
-                </div>
-                <div class="col-md-4 col-sm-6 item">
-                    <div class="box"><i class="glyphicon glyphicon-list-alt icon"></i>
-                        <h3 class="name">Travaux Dirigés</h3>
-                        <p class="description">Cette fonctionnalité vous permet de consulter les TD et autres devoirs déposés par les élèves et d&#39;avoir un suivi de ces derniers.</p><a href="{{ path('user_liste_devoir') }}" class="learn-more">En savoir plus >></a></div>
-                </div>
-                <div class="col-md-4 col-sm-6 item">
-                    <div class="box"><i class="glyphicon glyphicon-education icon"></i>
-                        <h3 class="name">Dépot des cours</h3>
-                        <p class="description">Cette fonctionnalité vous permet de déposer vos cours. Ils seront à la disposition des élèves.</p><a href="{{ path('user_ajouter_cours') }}" class="learn-more">En savoir plus >></a></div>
+            <div class="features-boxed">
+                <div class="container">
+                    <div class="intro">
+                        <h2 class="text-center">Bienvenue sur l'EPI - {{ app.user.prenom }} {{ app.user.nom }} </h2>
+                        <p class="text-center">Vous retrouverez ci-dessous les fonctionnalités de l&#39;EPI</p>
+                    </div>
+                    <div class="row features">
+                        <div class="col-md-4 col-sm-6 item">
+                            <div class="box"><i class="glyphicon glyphicon-time icon"></i>
+                                <h3 class="name">Votre temps est précieux</h3>
+                                <p class="description">Gagnez du temps en utilisant ce calendier. Il vous permettra
+                                    d'optimiser votre emploi du temps.</p><a href="{{ path('user_calendarPage') }}"
+                                                                             class="learn-more">En savoir plus >></a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 item">
+                            <div class="box"><i class="glyphicon glyphicon-list-alt icon"></i>
+                                <h3 class="name">Travaux Dirigés</h3>
+                                <p class="description">Cette fonctionnalité vous permet de consulter les TD et autres
+                                    devoirs déposés par les élèves et d&#39;avoir un suivi de ces derniers.</p><a
+                                        href="{{ path('user_liste_devoir') }}" class="learn-more">Accéder aux devoirs
+                                    déposés par les élèves</a></div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 item">
+                            <div class="box"><i class="glyphicon glyphicon-education icon"></i>
+                                <h3 class="name">Dépot des cours</h3>
+                                <p class="description">Cette fonctionnalité vous permet de déposer vos cours. Ils seront
+                                    à la disposition des élèves.</p>
+                                <a href="{{ path('user_ajouter_cours') }}" class="learn-more">Ajouter un cours</a></div>
+                            <a href="{{ path('user_liste_cours') }}" class="learn-more">Accéder aux cours que j'ai
+                                uploadé</a></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
+        </div>
     {% endif %}
 
     {% if is_granted('ROLE_STUDENT') %}
@@ -41,30 +51,39 @@
             <div class="features-boxed">
                 <div class="container">
                     <div class="intro">
-                        <h2 class="text-center">Bienvenue sur l'EPI - {{ app.user.username }} - Promo : {{ app.user.classe }}</h2>
+                        <h2 class="text-center">Bienvenue sur l'EPI - {{ app.user.prenom }} {{ app.user.nom }} -
+                            Promotion : {{ app.user.classe }}</h2>
                         <p class="text-center">Vous retrouverez ci-dessous les fonctionnalités de l&#39;EPI</p>
                     </div>
                     <div class="row features">
                         <div class="col-md-4 col-sm-6 item">
                             <div class="box"><i class="glyphicon glyphicon-time icon"></i>
                                 <h3 class="name">Votre temps est précieux</h3>
-                                <p class="description">Gagnez du temps en utilisant ce calendier. Il vous permettra d'optimiser votre emploi du temps.</p><a href="{{ path('user_calendarPage') }}" class="learn-more">En savoir plus >></a></div>
+                                <p class="description">Gagnez du temps en utilisant ce calendier. Il vous permettra
+                                    d'optimiser votre emploi du temps.</p><a href="{{ path('user_calendarPage') }}"
+                                                                             class="learn-more">En savoir plus >></a>
+                            </div>
                         </div>
                         <div class="col-md-4 col-sm-6 item">
                             <div class="box"><i class="glyphicon glyphicon-list-alt icon"></i>
                                 <h3 class="name">Travaux Dirigés</h3>
-                                <p class="description">Cette fonctionnalité vous permet de déposer vos TD et d&#39;avoir un suivi de ces derniers. Ils seront à la disposition de votre professeur.</p>
-                                <a href="{{ path('user_ajouter_devoir') }}" class="learn-more">Ajouter un devoir</a></div>
-                                <a href="{{ path('user_liste_devoir') }}" class="learn-more">Mes devoirs déposés</a></div>
+                                <p class="description">Cette fonctionnalité vous permet de déposer vos TD et d&#39;avoir
+                                    un suivi de ces derniers. Ils seront à la disposition de votre professeur.</p>
+                                <a href="{{ path('user_ajouter_devoir') }}" class="learn-more">Ajouter un devoir</a>
+                            </div>
+                            <a href="{{ path('user_liste_devoir') }}" class="learn-more">Devoirs que j'ai déposé</a>
                         </div>
-                        <div class="col-md-4 col-sm-6 item">
-                            <div class="box"><i class="glyphicon glyphicon-education icon"></i>
-                                <h3 class="name">Consulter les cours</h3>
-                                <p class="description">Tous les cours déposés par vos professeurs sont disponibles ici.</p><a href="{{ path('user_liste_cours') }}" class="learn-more">En savoir plus >></a></div>
-                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 item">
+                        <div class="box"><i class="glyphicon glyphicon-education icon"></i>
+                            <h3 class="name">Consulter les cours</h3>
+                            <p class="description">Tous les cours déposés par vos professeurs sont disponibles ici.</p>
+                            <a href="{{ path('user_liste_cours') }}" class="learn-more">Voir les cours de ma
+                                promotion</a></div>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
     {% endif %}
-{% endblock  %}
+{% endblock %}
