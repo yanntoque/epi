@@ -69,6 +69,30 @@ class Devoir
     private $classe;
 
     /**
+     * Stock l'id de l'étudiant lors de l'ajout d'un devoir
+     * @ORM\ManyToOne(targetEntity="BGKT\AdminBundle\Entity\User", inversedBy="devoirs")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
      * @param string $classe
      */
     public function setClasse($classe)

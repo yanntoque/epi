@@ -25,10 +25,12 @@ class DevoirController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $user = $this->get('security.token_storage')->getToken()->getUser()->getPrenom() ." ".$this->get('security.token_storage')->getToken()->getUser()->getNom();
+            $user  =  $this->get('security.token_storage')->getToken()->getUser();
+            $userFullName = $this->get('security.token_storage')->getToken()->getUser()->getPrenom() ." ".$this->get('security.token_storage')->getToken()->getUser()->getNom();
             $userClasse = $this->get('security.token_storage')->getToken()->getUser()->getClasse();
 
-            $devoir->setNomDepositaire($user);
+            $devoir->setUser($user);
+            $devoir->setNomDepositaire($userFullName);
             $devoir->setDateRendu(new \DateTime());
             $devoir->setClasse($userClasse);
             $devoir = $this->get('core.file_uploader')->upload($devoir);
@@ -101,8 +103,8 @@ class DevoirController extends Controller
 
     public function displayAction()
     {
-        $nomDepositaire = $this->get('security.token_storage')->getToken()->getUser()->getPrenom() ." ".$this->get('security.token_storage')->getToken()->getUser()->getNom();
-        $lstDevoirEleve = $this->getDoctrine()->getManager()->getRepository('BGKTCoreBundle:Devoir')->findAllByDepositaire($nomDepositaire);
+        $eleveId = $this->get('security.token_storage')->getToken()->getUser()->getId();
+        $lstDevoirEleve = $this->getDoctrine()->getManager()->getRepository('BGKTCoreBundle:Devoir')->findAllByEleve($eleveId);
         $lstDevoirProf = $this->getDoctrine()->getManager()->getRepository('BGKTCoreBundle:Devoir')->findAll();
 
         return $this->render('BGKTCoreBundle:Devoir:listeDevoir.html.twig', array('lstdevoirEleve' => $lstDevoirEleve,'lstdevoirprof' => $lstDevoirProf));

@@ -24,4 +24,18 @@ class DevoirRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('nomDepositaire', $nomDepositaire)
             ->getResult();
     }
+
+    /**
+     * Retrouve toutes les occurences des devoirs pour un élève
+     * @param $eleveid
+     * @return array
+     */
+    public function findAllByEleve($eleveid){
+        return $this->getEntityManager()
+            ->createQuery('SELECT d
+                                FROM BGKTCoreBundle:Devoir d
+                                WHERE d.user = :id')
+            ->setParameter('id', $eleveid)
+            ->getResult();
+    }
 }

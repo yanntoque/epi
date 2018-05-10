@@ -8,6 +8,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use BGKT\AdminBundle\Repository;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 /**
  * User
@@ -105,6 +107,20 @@ class User implements UserInterface
     private $classe;
 
     /**
+     * @ORM\OneToMany(targetEntity="BGKT\CoreBundle\Entity\Devoir", mappedBy="user")
+     */
+    private $devoirs;
+
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        $this->dateModif    = new \DateTime();
+        $this->devoirs = new ArrayCollection();
+    }
+
+    /**
      * @return string
      */
     public function getClasse()
@@ -147,6 +163,7 @@ class User implements UserInterface
         return $this;
     }
 
+
     /**
      * Get salt
      *
@@ -156,7 +173,6 @@ class User implements UserInterface
     {
         return $this->salt;
     }
-
 
     /**
      * Set cle
@@ -182,6 +198,8 @@ class User implements UserInterface
         return $this->cle;
     }
 
+
+
     /**
      * @param $nb_car
      * @param string $chaine
@@ -198,14 +216,6 @@ class User implements UserInterface
             $generation .= $car;
         }
         return $generation;
-    }
-
-
-
-
-    public function __construct()
-    {
-        $this->dateModif    = new \DateTime();
     }
 
     /**
