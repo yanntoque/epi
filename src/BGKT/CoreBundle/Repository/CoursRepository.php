@@ -15,13 +15,18 @@ class CoursRepository extends \Doctrine\ORM\EntityRepository
         return $this->findBy(array(), array('id' => 'DESC'));
     }
 
-    public function findAllByDepositaire($nomDepositaire){
+    /**
+     * Retrouve toutes les occurences des cours pour un professeur
+     * @param $profId
+     * @return array
+     */
+    public function findAllByProfesseur($profId){
         return $this->getEntityManager()
             ->createQuery('
             SELECT c
             FROM BGKTCoreBundle:Cours c
-            WHERE c.nomDepositaire = :nomDepositaire')
-            ->setParameter('nomDepositaire', $nomDepositaire)
+            WHERE c.user = :id')
+            ->setParameter('id', $profId)
             ->getResult();
     }
 }

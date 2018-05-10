@@ -29,9 +29,11 @@ class CoursController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $user = $this->get('security.token_storage')->getToken()->getUser()->getPrenom() ." ".$this->get('security.token_storage')->getToken()->getUser()->getNom();
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $userNomDepositaire = $this->get('security.token_storage')->getToken()->getUser()->getPrenom() . " " . $this->get('security.token_storage')->getToken()->getUser()->getNom();
 
-            $cours->setNomDepositaire($user);
+            $cours->setUser($user);
+            $cours->setNomDepositaire($userNomDepositaire);
             $cours->setDate(new \DateTime());
             $cours = $this->get('core.file_uploader')->upload($cours);
 
@@ -107,11 +109,17 @@ class CoursController extends Controller
     }
 
 
+    /**
+     * Afficher les cours dans la vue prévue à cet effet
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function displayAction()
     {
-        $nomDepositaire = $this->get('security.token_storage')->getToken()->getUser()->getPrenom() ." ".$this->get('security.token_storage')->getToken()->getUser()->getNom();
-        $lstCoursProf = $this->getDoctrine()->getManager()->getRepository('BGKTCoreBundle:Cours')->findAllByDepositaire($nomDepositaire);
+        $userId = $this->get('security.token_storage')->getToken()->getUser()->getId();
+
+        $lstCoursProf = $this->getDoctrine()->getManager()->getRepository('BGKTCoreBundle:Cours')->findAllByProfesseur($userId);
         $lstCours = $this->getDoctrine()->getManager()->getRepository('BGKTCoreBundle:Cours')->findAll();
+
         return $this->render('BGKTCoreBundle:cours:listeCours.html.twig', array('lstCours' => $lstCours, 'lstCoursProf' => $lstCoursProf));
     }
 

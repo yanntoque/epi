@@ -81,7 +81,6 @@ class User implements UserInterface
     private $dateModif;
 
 
-
     /**
      * @var string
      *
@@ -112,12 +111,18 @@ class User implements UserInterface
     private $devoirs;
 
     /**
+     * @ORM\OneToMany(targetEntity="BGKT\CoreBundle\Entity\Cours", mappedBy="user")
+     */
+    private $cours;
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
-        $this->dateModif    = new \DateTime();
+        $this->dateModif = new \DateTime();
         $this->devoirs = new ArrayCollection();
+        $this->cours = new ArrayCollection();
     }
 
     /**
@@ -199,7 +204,6 @@ class User implements UserInterface
     }
 
 
-
     /**
      * @param $nb_car
      * @param string $chaine
@@ -209,8 +213,7 @@ class User implements UserInterface
     {
         $nb_lettres = strlen($chaine) - 1;
         $generation = '';
-        for($i=0; $i < $nb_car; $i++)
-        {
+        for ($i = 0; $i < $nb_car; $i++) {
             $pos = mt_rand(0, $nb_lettres);
             $car = $chaine[$pos];
             $generation .= $car;
@@ -347,8 +350,6 @@ class User implements UserInterface
     {
         return $this->dateModif;
     }
-
-
 
 
     /**

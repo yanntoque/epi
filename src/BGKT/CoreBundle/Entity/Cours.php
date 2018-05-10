@@ -60,6 +60,29 @@ class Cours
     private $classe;
 
     /**
+     * Stock l'id du professeur lors de l'ajout d'un cours
+     * @ORM\ManyToOne(targetEntity="BGKT\AdminBundle\Entity\User", inversedBy="cours")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
      * @return string
      */
     public function getClasse()
