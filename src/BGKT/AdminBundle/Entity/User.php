@@ -400,6 +400,14 @@ class User implements UserInterface
         return $this->roles;
     }
 
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+      return strval($this->getId());
+    }
+
 
 }
 

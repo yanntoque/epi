@@ -25,8 +25,8 @@ class DevoirController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $user  =  $this->get('security.token_storage')->getToken()->getUser();
-            $userFullName = $this->get('security.token_storage')->getToken()->getUser()->getPrenom() ." ".$this->get('security.token_storage')->getToken()->getUser()->getNom();
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $userFullName = $this->get('security.token_storage')->getToken()->getUser()->getPrenom() . " " . $this->get('security.token_storage')->getToken()->getUser()->getNom();
             $userClasse = $this->get('security.token_storage')->getToken()->getUser()->getClasse();
 
             $devoir->setUser($user);
@@ -101,13 +101,21 @@ class DevoirController extends Controller
         return $this->redirect($this->generateUrl('user_liste_devoir'));
     }
 
+    /**
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function displayAction()
     {
+        $devoirRepository = $this->getDoctrine()->getManager()->getRepository('BGKTCoreBundle:Devoir');
+        $userRepository = $this->getDoctrine()->getManager()->getRepository('BGKTAdminBundle:User');
         $eleveId = $this->get('security.token_storage')->getToken()->getUser()->getId();
-        $lstDevoirEleve = $this->getDoctrine()->getManager()->getRepository('BGKTCoreBundle:Devoir')->findAllByEleve($eleveId);
-        $lstDevoirProf = $this->getDoctrine()->getManager()->getRepository('BGKTCoreBundle:Devoir')->findAll();
 
-        return $this->render('BGKTCoreBundle:Devoir:listeDevoir.html.twig', array('lstdevoirEleve' => $lstDevoirEleve,'lstdevoirprof' => $lstDevoirProf));
+        $lstDevoirEleve = $devoirRepository->findAllByEleve($eleveId);
+        $lstDevoirProf = $devoirRepository->findAll();
+        $lstProf = $userRepository->findAll();
+
+        return $this->render('BGKTCoreBundle:Devoir:listeDevoir.html.twig', array('lstdevoirEleve' => $lstDevoirEleve, 'lstdevoirprof' => $lstDevoirProf, 'lstProf' => $lstProf));
     }
 
 }

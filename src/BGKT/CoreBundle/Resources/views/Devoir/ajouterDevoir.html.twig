@@ -1,5 +1,4 @@
 {% extends "BGKTCoreBundle::userLayout.html.twig" %}
-
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset("css/userPagesStyles/userHomePage.css") }}"/>
         {{ parent() }}
@@ -8,8 +7,7 @@
         {% if is_granted('ROLE_STUDENT') %}
             {{ form_start(form) }}
             {{ form_widget(form) }}
-            <input type="submit" class="btn btn-lg btn-success" value="Ajouter mon devoir" />
+            <input type="submit" class="btn btn-lg btn-success" value="Ajouter mon devoir"/>
             {{ form_end(form) }}
-
         {% endif %}
     {% endblock %}

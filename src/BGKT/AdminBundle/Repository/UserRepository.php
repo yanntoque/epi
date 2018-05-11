@@ -37,4 +37,20 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             )
             ->getResult();
     }
+
+    /**
+     * Retourne un objet queryBuilder (utilisé dans le formulaire DevoirType)
+     * La requête permet de retourner tous les users ayant pour role : ROLE_TEACHER
+     * @param $role
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function findByRoles($role)
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('u')
+            ->from('BGKTAdminBundle:User', 'u')
+            ->where('u.roles LIKE :roles')
+            ->setParameter('roles', '%' . $role . '%');
+        return $qb;
+    }
 }

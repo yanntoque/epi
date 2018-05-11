@@ -76,6 +76,28 @@ class Devoir
     private $user;
 
     /**
+     * Stock l'id du professeur concerné par ce devoir
+     * @ORM\Column(name="professeur", type="string", length=255, nullable=true)
+     */
+    private $professeur;
+
+    /**
+     * @return mixed
+     */
+    public function getProfesseur()
+    {
+        return $this->professeur;
+    }
+
+    /**
+     * @param mixed $professeur
+     */
+    public function setProfesseur($professeur)
+    {
+        $this->professeur = $professeur;
+    }
+
+    /**
      * @param mixed $user
      */
     public function setUser($user)

@@ -2,6 +2,8 @@
 
 namespace BGKT\CoreBundle\Form;
 
+use BGKT\AdminBundle\Repository\UserRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,8 +16,13 @@ class DevoirType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('titre')
-                ->add('commentaire')
-                ->add('document');
+            ->add('commentaire')
+            ->add('professeur', EntityType::class, array('class' => 'BGKTAdminBundle:User', 'choice_label' => function ($professeur) {
+                return $professeur->getNom() . " " . $professeur->getPrenom();
+            }, 'query_builder' => function (UserRepository $repo) {
+                return $repo->findByRoles('teacher');
+            }))
+            ->add('document');
     }
 
     /**

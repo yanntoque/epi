@@ -15,6 +15,7 @@
                     <th>Identifiant</th>
                     <th>Titre</th>
                     <th>Commentaire</th>
+                    <th>Professeur concerné</th>
                     <th>Déposé le</th>
                     <th>Déposé par</th>
                     <th>Apercu / Supprimer / Modifier</th>
@@ -26,6 +27,11 @@
                         <td>{{ devoir.id }}</td>
                         <td>{{ devoir.getTitre }}</td>
                         <td>{{ devoir.getCommentaire }}</td>
+                        {% for prof in lstProf %}
+                            {% if devoir.getProfesseur == prof.id %}
+                                <td> {{ prof.getNom }}&nbsp;{{ prof.getPrenom }}</td>
+                            {% endif %}
+                        {% endfor %}
                         <td>{{ devoir.getDateRendu|date('d/m/Y') }}</td>
                         <td>{{ devoir.getNomDepositaire }}</td>
                         <td><a class="btn btn-success" href="{{ asset('uploads/devoir/'~devoir.getDocument) }}">Aperçu
@@ -57,18 +63,20 @@
                 </thead>
                 <tbody>
                 {% for devoir in lstdevoirprof %}
-                    <tr>
-                        <td>{{ devoir.id }}</td>
-                        <td>{{ devoir.getNomDepositaire }}</td>
-                        <td>{{ devoir.getTitre }}</td>
-                        <td>{{ devoir.getCommentaire }}</td>
-                        <td>{{ devoir.getDateRendu|date('d/m/Y') }}</td>
-                        <td><a class="btn btn-success" href="{{ asset('uploads/devoir/'~devoir.getDocument) }}">Aperçu
-                                du devoir</a>
-                            <a class="btn btn-danger" href="{{ path('user_supprimer_devoir', {'id': devoir.id}) }}">Supprimer
-                                ce devoir</a>
-                        </td>
-                    </tr>
+                    {% if devoir.getProfesseur == app.user.id %}
+                        <tr>
+                            <td>{{ devoir.id }}</td>
+                            <td>{{ devoir.getNomDepositaire }}</td>
+                            <td>{{ devoir.getTitre }}</td>
+                            <td>{{ devoir.getCommentaire }}</td>
+                            <td>{{ devoir.getDateRendu|date('d/m/Y') }}</td>
+                            <td><a class="btn btn-success" href="{{ asset('uploads/devoir/'~devoir.getDocument) }}">Aperçu
+                                    du devoir</a>
+                                <a class="btn btn-danger" href="{{ path('user_supprimer_devoir', {'id': devoir.id}) }}">Supprimer
+                                    ce devoir</a>
+                            </td>
+                        </tr>
+                    {% endif %}
                 {% endfor %}
                 </tbody>
             </table>
