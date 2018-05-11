@@ -50,11 +50,11 @@ Puis effectuer cette commande afin de récupérer les dépendances :
 
 Il vous sera demandé de renseigner les champs suivants :
 
-    * database_host (localhost) : Appuyez sur Entrée
-    * databse_port (null) : Appuyez sur Entrée
-    * databse_name (epi) :  Appuyez sur Entrée
-    * databse_user (root) : Si root n'est pas votre user renseigner le 
-    * database_ password (root): Si root n'est pas votre password renseigner le 
+    * database_host (localhost) : Appuyez sur Entrée sauf si votre hote diffère de localhost
+    * database_port (null) : Appuyez sur Entrée sauf si le port est différent
+    * database_name (epi) :  Appuyez sur Entrée
+    * database_user (root) : Si root n'est pas votre user renseigner le 
+    * database_password (null): Si vous n'avez pas de mot de passe tapez Entrée sinon saisissez le  
     * mailer_transport (smtp) : Appuyez sur Entrée
     * mailer_host (null) : Appuyez sur Entrée
     * mailer_user (null) : Appuyez sur Entrée
