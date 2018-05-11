@@ -35,7 +35,7 @@ Environnement requis pour faire fonctionner l'application :
 Installation
 --------------
 
-Cloner le projet à la racine de votre serveur (ex: /var/html/www , wamp64 : wamp64/www ). 
+Cloner le projet à la racine de votre serveur (ex: /var/www/html, sur wamp64 : wamp64/www). 
 
     * En effectuant la commande : git clone https://github.com/yanntoque/epi.git
     
@@ -45,7 +45,7 @@ Une fois le clone effectué rendez-vous dans le dossier de l'application à l'ai
     
 Puis effectuer cette commande afin de récupérer les dépendances : 
 
-    * composer install 
+    * php composer.phar install 
 
 
 Il vous sera demandé de renseigner les champs suivants :
@@ -64,7 +64,7 @@ Il vous sera demandé de renseigner les champs suivants :
 
 Le projet a besoin d'une base données nommée : epi 
 
-Vous pouvez la télécharger depuis le lien suivant :  https://goo.gl/hU33Qa
+Vous pouvez la télécharger depuis le lien suivant :  https://goo.gl/G2wXvn
 
 Il suffira ensuite de créer une base de données avec le nom epi depuis phpmyadmin et importer le fichier téléchargé.
 
@@ -78,14 +78,16 @@ Comme vous pouvez le remarquer il faut se connecter. Il y a deux environnemnents
     
    * Ceux qui les rôles : ROLE_TEACHER ou ROLE_STUDENT pourront accéder à l'interface de l'EPI 
 
-Il y a des utilisateurs par défaut, vous devez utiliser leur identifiant pour accéder aux différents environnement.
+Il y a des utilisateurs par défaut, vous devez utiliser leur identifiant pour accéder aux différents environnements.
 
-   * Un administrateur dont le pseudo est Gwenael et le mot de passe root
-   
-   * Un professeur dont le pseudo est Erwan et le mot de passe root 
-   
-
-En utilisant le compte de Gwenael vous aurez accès aux fonctionnalités des administrateurs et avec celui d'Erwan celles de l'epi.
+| Roles          | Pseudo  | Mot de passe |
+|----------------|---------|--------------|
+| Administrateur | Gwenael | root         |
+| Administrateur | Hermine | root         |
+| Professeur     | Erwan   | root         |
+| Professeur     | Isa     | root         |
+| Étudiant       | Elon    | root         |
+| Étudiant       | Victor  | root         |
 
 
  
