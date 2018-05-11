@@ -9,7 +9,7 @@
     {% if is_granted('ROLE_STUDENT') %}
         <div class="container">
             <h1>Liste des devoirs que j'ai rendu :</h1>
-            <table class="table table-stripped">
+            <table class="table table-stripped table-responsive">
                 <thead>
                 <tr>
                     <th>Identifiant</th>
@@ -50,11 +50,12 @@
     {% if is_granted('ROLE_TEACHER') %}
         <div class="container">
             <h1>Devoirs déposés par les élèves</h1>
-            <table class="table table-stripped">
+            <table class="table table-stripped table-responsive">
                 <thead>
                 <tr>
                     <th>Identifiant</th>
                     <th>Déposé par</th>
+                    <th>Promotion</th>
                     <th>Titre</th>
                     <th>Commentaire</th>
                     <th>Déposé le</th>
@@ -67,6 +68,11 @@
                         <tr>
                             <td>{{ devoir.id }}</td>
                             <td>{{ devoir.getNomDepositaire }}</td>
+                            {% for prof in lstProf %}
+                                {% if devoir.getUser|trans == prof.id   %}
+                                    <td> {{ prof.getClasse }}</td>
+                                {% endif %}
+                            {% endfor %}
                             <td>{{ devoir.getTitre }}</td>
                             <td>{{ devoir.getCommentaire }}</td>
                             <td>{{ devoir.getDateRendu|date('d/m/Y') }}</td>

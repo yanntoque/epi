@@ -5,11 +5,13 @@
         {{ parent() }}
     {% endblock %}
     {% block user %}
+        <div class="container">
+        <h3>Informations sur mon devoir :</h3>
         {% if is_granted('ROLE_STUDENT') %}
             {{ form_start(form) }}
             {{ form_widget(form) }}
             <input type="submit" class="btn btn-lg btn-info" value="Modifier mon devoir"/>
             {{ form_end(form) }}
-
         {% endif %}
+        </div>
     {% endblock %}

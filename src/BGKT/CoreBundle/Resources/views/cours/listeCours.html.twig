@@ -9,7 +9,7 @@
     {% if is_granted('ROLE_TEACHER') %}
         <div class="container">
             <h1>Liste des cours que vous avez déposés</h1>
-            <table class="table table-stripped">
+            <table class="table table-stripped table-responsive">
                 <thead>
                 <tr>
                     <th>Identifiant</th>
@@ -44,7 +44,7 @@
 {% if is_granted('ROLE_STUDENT') %}
 <div class="container">
     <h1>Liste des cours déposés par vos professeurs</h1>
-    <table class="table table-stripped">
+    <table class="table table-stripped table-responsive">
         <thead>
         <tr>
             <th>Identifiant</th>
@@ -52,7 +52,7 @@
             <th>Déposé le</th>
             <th>Déposé par</th>
             <th>Promotion</th>
-            <th>Apercu / Modifier / Supprimer</th>
+            <th>Apercu du cours</th>
         </tr>
         </thead>
         <tbody>

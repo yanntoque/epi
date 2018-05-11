@@ -36,9 +36,12 @@
                                 <h3 class="name">Dépot des cours</h3>
                                 <p class="description">Cette fonctionnalité vous permet de déposer vos cours. Ils seront
                                     à la disposition des élèves.</p>
-                                <a href="{{ path('user_ajouter_cours') }}" class="learn-more">Ajouter un cours</a></div>
-                            <a href="{{ path('user_liste_cours') }}" class="learn-more">Accéder aux cours que j'ai
-                                uploadé</a></div>
+                                <a href="{{ path('user_ajouter_cours') }}" class="learn-more">Ajouter un cours</a>
+                                <br/>
+                                <a href="{{ path('user_liste_cours') }}" class="learn-more">Accéder aux cours que j'ai
+                                    uploadé</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -69,17 +72,21 @@
                                 <h3 class="name">Travaux Dirigés</h3>
                                 <p class="description">Cette fonctionnalité vous permet de déposer vos TD et d&#39;avoir
                                     un suivi de ces derniers. Ils seront à la disposition de votre professeur.</p>
-                                <a href="{{ path('user_ajouter_devoir') }}" class="learn-more">Ajouter un devoir</a>
+                                <a href="{{ path('user_ajouter_devoir') }}" class="learn-more">Ajouter un
+                                    devoir</a>
+                                <br/>
+                                <a href="{{ path('user_liste_devoir') }}" class="learn-more">Devoirs que j'ai déposé</a>
                             </div>
-                            <a href="{{ path('user_liste_devoir') }}" class="learn-more">Devoirs que j'ai déposé</a>
                         </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 item">
-                        <div class="box"><i class="glyphicon glyphicon-education icon"></i>
-                            <h3 class="name">Consulter les cours</h3>
-                            <p class="description">Tous les cours déposés par vos professeurs sont disponibles ici.</p>
-                            <a href="{{ path('user_liste_cours') }}" class="learn-more">Voir les cours de ma
-                                promotion</a></div>
+                        <div class="col-md-4 col-sm-6 item">
+                            <div class="box"><i class="glyphicon glyphicon-education icon"></i>
+                                <h3 class="name">Consulter les cours</h3>
+                                <p class="description">Tous les cours déposés par vos professeurs sont disponibles
+                                    ici.</p>
+                                <a href="{{ path('user_liste_cours') }}" class="learn-more">Voir les cours de ma
+                                    promotion</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

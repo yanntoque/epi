@@ -5,6 +5,8 @@
         {{ parent() }}
     {% endblock %}
     {% block user %}
+        <div class="container">
+            <h3>Informations sur mon cours :</h3>
         {% if is_granted('ROLE_TEACHER') %}
             {{ form_start(form) }}
             {{ form_widget(form) }}
@@ -12,4 +14,5 @@
             {{ form_end(form) }}
 
         {% endif %}
+        </div>
     {% endblock %}

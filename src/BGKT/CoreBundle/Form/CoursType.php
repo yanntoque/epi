@@ -18,15 +18,14 @@ class CoursType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('document', FileType::class, array('label' => 'Cliquez sur ce boutton pour accéder au cours que vous voulez uploader : '))
-            ->add('intitule')
+        $builder->add('intitule')
             ->add('classe', ChoiceType::class, array(
                 'required' => true,
                 'choices' => ClasseEnum::getAvailableClasses(),
                 'choice_label' => function ($choice) {
                     return ClasseEnum::getClasseName($choice);
-                }
-            ));
+                }))
+            ->add('document', FileType::class, array('label' => 'Cliquez sur ce boutton pour accéder au cours que vous voulez uploader : '));
     }
 
     /**

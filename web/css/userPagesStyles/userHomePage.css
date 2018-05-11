@@ -3,10 +3,22 @@
 
 html, body {
     margin: 10px;
+    color: white !important;
     background-color: #00326e !important;
-    color:white !important;
+    text-align: center;
+    font-size: 15px !important;
 }
 
+a {
+    color:#c89108 !important;
+}
+
+.btn{
+    color: white !important;
+}
+.main{
+    color:white !important;
+}
 .container{
     color: white;
 }
@@ -16,4 +28,13 @@ html, body {
     color: #c89108;
     font-size:60px;
 
+}
+
+
+.panel-heading{
+    background-color: #c89108 !important;
+}
+
+.panel-body{
+    background-color: #00326e  !important;
 }
