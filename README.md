@@ -46,7 +46,19 @@ Une fois le clone effectué rendez-vous dans le dossier de l'application à l'ai
 Puis effectuer cette commande afin de récupérer les dépendances : 
 
     * php composer.phar install 
+    
+Si vous utilisez XAMPP et que l'erreur suivante apparait : 
 
+```
+  [Composer\Exception\NoSslException]
+  The openssl extension is required for SSL/TLS protection but is not availab
+  le. If you can not enable the openssl extension, you can disable this error
+  , at your own risk, by setting the 'disable-tls' option to true.
+```
+
+Il faudra décommenter dans votre fichier php.ini la ligne : 
+     
+      *   extension=php_openssl.dll
 
 Il vous sera demandé de renseigner les champs suivants :
 
