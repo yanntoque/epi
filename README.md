@@ -101,7 +101,11 @@ Il y a des utilisateurs par défaut, vous devez utiliser leur identifiant pour a
 | Étudiant       | Elon    | root         |
 | Étudiant       | Victor  | root         |
 
+Installation
+--------------
 
+PhpDoc disponible ici : 
+http://yanntoque.github.io/
  
    
    
