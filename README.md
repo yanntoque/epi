@@ -101,7 +101,7 @@ Il y a des utilisateurs par défaut, vous devez utiliser leur identifiant pour a
 | Étudiant       | Elon    | root         |
 | Étudiant       | Victor  | root         |
 
-Installation
+Documentation des classes 
 --------------
 
 PhpDoc disponible ici : 
